@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin\RPJMD;
 
 use App\Models\Visi;
 use Illuminate\Http\Request;

@@ -1,10 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin\RPJMD;
 
 use App\Models\Misi;
 use App\Models\Tujuan;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\TujuanIndikator;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -20,16 +23,16 @@ class TujuanController extends Controller
 
             return DataTables::of($tujuan)
                 ->addIndexColumn()
-                ->editColumn('misi', function($row) {
+                ->editColumn('misi', function ($row) {
                     $nama = $row->misi->nama;
                     return $nama;
                 })
-                ->addColumn('action', function($row) {
-                    $btn = '<a href="'.route('tujuan.show', $row->id).'" class="btn btn-info btn-sm m-1"><i class="bi bi-eye"></i></i></a>';
-                    $btn = $btn.'<a href="'.route('tujuan.edit', $row->id).'" class="btn btn-warning btn-sm m-1"><i class="bi bi-pencil-square"></i></a>';
-                    $btn = $btn.'<form action="'.route('tujuan.destroy', $row->id).'" method="POST" class="d-inline-flex">'.csrf_field().''.method_field("DELETE").'<button type="submit" class="btn btn-danger btn-sm m-1" onclick="return confirm(\'Yakin Akan Menghapus Data Ini?\')"><i class="bi bi-trash"></i></button>';
-                    $btn = $btn.'<a href="'.route('tujuan.edit', $row->id).'" class="btn btn-secondary btn-sm m-1"><i class="bi bi-plus"></i></a>';
-                    return $btn; 
+                ->addColumn('action', function ($row) {
+                    $btn = '<a href="' . route('tujuan.indikator', $row->id) . '" class="btn btn-secondary btn-sm m-1"><i class="bi bi-plus"></i></a>';
+                    $btn = $btn . '<a href="' . route('tujuan.show', $row->id) . '" class="btn btn-info btn-sm m-1"><i class="bi bi-eye"></i></i></a>';
+                    $btn = $btn . '<a href="' . route('tujuan.edit', $row->id) . '" class="btn btn-warning btn-sm m-1"><i class="bi bi-pencil-square"></i></a>';
+                    $btn = $btn . '<form action="' . route('tujuan.destroy', $row->id) . '" method="POST" class="d-inline-flex">' . csrf_field() . '' . method_field("DELETE") . '<button type="submit" class="btn btn-danger btn-sm m-1" onclick="return confirm(\'Yakin Akan Menghapus Data Ini?\')"><i class="bi bi-trash"></i></button>';
+                    return $btn;
                 })
                 ->rawColumns(['action'])
                 ->make(true);
@@ -110,5 +113,50 @@ class TujuanController extends Controller
 
         // redirect opd index
         return redirect()->route('tujuan.index')->with(['success' => 'Data Berhasil Dihapus']);
+    }
+
+    public function indikator(string $id)
+    {
+        $tujuan = Tujuan::findOrFail($id);
+        $indikator = TujuanIndikator::with('tujuan')->where('tujuan_id', $tujuan->id)->get();
+        return view('admin.tujuan.indikator', compact('tujuan', 'indikator'));
+    }
+
+    public function indikator_store(Request $request)
+    {
+        $indikator = $this->validate($request, [
+            'nama'   => 'required',
+            'tujuan_id' => 'required'
+        ]);
+
+        TujuanIndikator::create($indikator);
+        return redirect()->route('tujuan.indikator', $request->tujuan_id);
+    }
+
+    public function indikator_delete(string $id)
+    {
+        $indikator = TujuanIndikator::findOrFail($id);
+        $indikator->delete();
+
+        return redirect()->route('tujuan.indikator', $indikator->tujuan_id);
+    }
+
+    public function indikator_edit(string $id)
+    {
+        $indikator = TujuanIndikator::findOrFail($id);
+        return view('admin.tujuan.indikator_edit', compact('indikator'));
+    }
+
+    public function indikator_update(Request $request, string $id)
+    {
+        $indikator_validated = $this->validate($request, [
+            'nama'   => 'required',
+            'tujuan_id' => 'required'
+        ]);
+
+        $indikator = TujuanIndikator::findOrFail($id);
+        $indikator->update($indikator_validated);
+
+        return redirect()->route('tujuan.indikator', $request->tujuan_id);
     }
 }

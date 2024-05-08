@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.1/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
     <script src="{{ asset('coreui/js/config.js') }}"></script>
     <script src="{{ asset('coreui/js/color-modes.js') }}"></script>
 </head>
@@ -46,7 +48,7 @@
                                     class="nav-icon-bullet"></span></span> Tujuan</a></li>
                     <li class="nav-item"><a class="nav-link {{ request()->is('admin/sasaran*') ? 'active' : '' }}" href="{{ route('sasaran.index')}}"><span class="nav-icon"><span
                                     class="nav-icon-bullet"></span></span> Sasaran</a></li>
-                    <li class="nav-item"><a class="nav-link" href=""><span class="nav-icon"><span
+                    <li class="nav-item"><a class="nav-link {{ request()->is('admin/program*') ? 'active' : '' }}" href="{{ route('program.index')}}"><span class="nav-icon"><span
                                     class="nav-icon-bullet"></span></span> Program</a></li>
                 </ul>
             </li>
@@ -204,7 +206,7 @@
                     <li class="nav-item dropdown"><a class="nav-link py-0 pe-0" data-coreui-toggle="dropdown"
                             href="#" role="button" aria-haspopup="true" aria-expanded="false">
                             <div class="avatar avatar-md"><img class="avatar-img"
-                                    src="{{ asset('coreui/assets/img/avatars/8.jpg') }}" alt="user@email.com"></div>
+                                    src="{{ asset('coreui/assets/img/avatars/9.jpg') }}" alt="user@email.com"></div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end pt-0">
                             <div class="dropdown-header bg-body-tertiary text-body-secondary fw-semibold my-2">
@@ -260,6 +262,7 @@
     <script src="https://cdn.datatables.net/2.0.1/js/dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/2.0.1/js/dataTables.bootstrap5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         const header = document.querySelector('header.header');
 

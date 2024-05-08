@@ -14,7 +14,7 @@
             </div> --}}
         </div>
     </div>
-    <div class="card">
+    <div class="card mb-3">
         <div class="card-body">
             <table id="tujuan" class="table table-striped" style="width:100%">
                 <thead>
