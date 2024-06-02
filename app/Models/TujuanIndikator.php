@@ -15,6 +15,11 @@ class TujuanIndikator extends Model
         'tujuan_id'
     ];
 
+    protected $casts = [
+        'urusan' => 'array',
+        'perangkat_daerah' => 'array'
+    ];
+
     public function tujuan(): BelongsTo
     {
         return $this->belongsTo(Tujuan::class);

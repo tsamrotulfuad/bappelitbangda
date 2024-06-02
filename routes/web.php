@@ -8,8 +8,6 @@ use App\Http\Controllers\Admin\RPJMD\ProgramController;
 use App\Http\Controllers\Admin\RPJMD\VisiController;
 use App\Http\Controllers\Admin\RPJMD\TujuanController;
 use App\Http\Controllers\Admin\RPJMD\SasaranController;
-use App\Models\Sasaran;
-use App\Models\TujuanIndikator;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +41,7 @@ Route::prefix('admin')->group(function () {
     Route::delete('/sasaran/indikator/{id}', [SasaranController::class, 'indikator_delete'])->name('sasaran.indikator.delete');
 
     //Program
+    Route::get('/program/indikator/{id}', [ProgramController::class, 'indikator'])->name('program.indikator');
 
     Route::resource('program', ProgramController::class);
     Route::resource('opds', OpdController::class);

@@ -17,8 +17,8 @@
                                 <input type="text" class="form-control" name="nama" id="nama" placeholder="Masukkan Program Daerah" value="{{ old('nama') }}">
                             </div>
                             <div class="col-md-6">
-                                <label for="indikator_sasaran" class="form-label">Indikator Sasaran</label>
-                                <select class="form-control" id="indikator_sasaran" name="indikator_sasaran">
+                                <label for="sasaran_indikator_id" class="form-label">Indikator Sasaran</label>
+                                <select class="form-control" id="sasaran_indikator_id" name="sasaran_indikator_id">
                                     
                                 </select>
                             </div>
@@ -34,9 +34,30 @@
 @push('scripts')
     <script>
         $(document).ready(function () {
-            $('#indikator_sasaran').select2({
-                theme: "bootstrap-5",       
-                placeholder: "Pilih Indikator"
+            $('#sasaran_indikator_id').select2({
+                theme: "bootstrap-5",
+                placeholder: "Pilih Indikator",
+                ajax: {
+                    url: "{{ route('indikator.sasaran')}}",
+                    dataType: 'json',
+                    data: function (params) {
+                        return {
+                            q: $.trim(params.term) // search term
+                        };
+                    },
+                    processResults: function({
+                        data
+                    }) {
+                        return {
+                            results: $.map(data, function(item) {
+                                return {
+                                    id: item.id,
+                                    text: item.nama
+                                }
+                            }),
+                        }
+                    }
+                }
             });
         });
     </script>

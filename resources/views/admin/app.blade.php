@@ -15,7 +15,6 @@
     <!-- We use those styles to show code examples, you should remove them in your application.-->
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.1/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
     <script src="{{ asset('coreui/js/config.js') }}"></script>
@@ -25,7 +24,7 @@
     <div class="sidebar sidebar-dark sidebar-fixed border-end" id="sidebar">
         <div class="sidebar-header border-bottom">
             <div class="sidebar-header">
-                <div class="sidebar-brand"><b>App Name</b></div>
+                <div class="sidebar-brand"><b>BAPPELITBANGDA</b></div>
               </div>            
         </div>
         <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
@@ -119,7 +118,12 @@
                 href="{{ route('opds.index') }}">
                 <svg class="nav-icon">
                     <use xlink:href="{{ asset('coreui/vendors/@coreui/icons/svg/free.svg#cil-building') }}"></use>
-                </svg> OPD</a></li>
+                </svg> Perangkat Daerah</a></li>
+            <li class="nav-item"><a class="nav-link {{ request()->is('admin/urusan*') ? 'active' : '' }}"
+                href="{{ route('opds.index') }}">
+                <svg class="nav-icon">
+                    <use xlink:href="{{ asset('coreui/vendors/@coreui/icons/svg/free.svg#cil-building') }}"></use>
+                </svg> Urusan</a></li>
         </ul>
         <div class="sidebar-footer border-top d-none d-md-flex">
             <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button>
@@ -261,7 +265,6 @@
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://cdn.datatables.net/2.0.1/js/dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/2.0.1/js/dataTables.bootstrap5.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         const header = document.querySelector('header.header');
@@ -271,14 +274,6 @@
                 header.classList.toggle('shadow-sm', document.documentElement.scrollTop > 0);
             }
         });
-    </script>
-    <script>
-        //message with toastr
-        @if (session()->has('success'))
-            toastr.success('{{ session('success') }}', 'BERHASIL');
-        @elseif (session()->has('error'))
-            toastr.error('{{ session('error') }}', 'GAGAL');
-        @endif
     </script>
     @stack('scripts')
 </body>

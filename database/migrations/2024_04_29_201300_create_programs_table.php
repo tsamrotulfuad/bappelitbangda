@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('programs', function (Blueprint $table) {
             $table->id();
+            $table->string('nama');
+            $table->unsignedBigInteger('sasaran_indikator_id');
+            $table->foreign('sasaran_indikator_id')->references('id')->on('sasaran_indikators');
             $table->timestamps();
         });
     }

@@ -15,6 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('nama');
             $table->unsignedBigInteger('tujuan_id');
+            $table->string('satuan');
+            $table->string('kondisi_awal_kinerja');
+            $table->string('target_kinerja_akhir_periode');
+            $table->json('urusan');
+            $table->json('perangkat_daerah');
             $table->foreign('tujuan_id')->references('id')->on('tujuans');
             $table->timestamps();
         });

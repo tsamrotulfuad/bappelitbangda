@@ -121,6 +121,19 @@ class SasaranController extends Controller
         return view('admin.sasaran.indikator', compact('sasaran', 'indikator'));
     }
 
+    public function indikator_sasaran(Request $request)
+    {
+        $term = trim($request->q);
+    
+        if (empty($term)) {
+            $indikator_sasaran = SasaranIndikator::all();
+            return response()->json(['data' => $indikator_sasaran]);
+        } else {
+            $indikators = SasaranIndikator::where('nama', 'like', '%'. $term .'%')->get();
+            return response()->json(['data' => $indikators]);
+        }
+    }
+
     public function indikator_store(Request $request)
     {
         $indikator = $this->validate($request, [
