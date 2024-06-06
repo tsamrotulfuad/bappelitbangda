@@ -45,8 +45,6 @@
                                     class="nav-icon-bullet"></span></span> Misi</a></li>
                     <li class="nav-item"><a class="nav-link {{ request()->is('admin/tujuan*') ? 'active' : '' }}" href="{{ route('tujuan.index')}}"><span class="nav-icon"><span
                                     class="nav-icon-bullet"></span></span> Tujuan</a></li>
-                    <li class="nav-item"><a class="nav-link {{ request()->is('admin/sasaran*') ? 'active' : '' }}" href="{{ route('sasaran.index')}}"><span class="nav-icon"><span
-                                    class="nav-icon-bullet"></span></span> Sasaran</a></li>
                     <li class="nav-item"><a class="nav-link {{ request()->is('admin/program*') ? 'active' : '' }}" href="{{ route('program.index')}}"><span class="nav-icon"><span
                                     class="nav-icon-bullet"></span></span> Program</a></li>
                 </ul>
@@ -120,7 +118,7 @@
                     <use xlink:href="{{ asset('coreui/vendors/@coreui/icons/svg/free.svg#cil-building') }}"></use>
                 </svg> Perangkat Daerah</a></li>
             <li class="nav-item"><a class="nav-link {{ request()->is('admin/urusan*') ? 'active' : '' }}"
-                href="{{ route('opds.index') }}">
+                href="{{ route('urusan.index') }}">
                 <svg class="nav-icon">
                     <use xlink:href="{{ asset('coreui/vendors/@coreui/icons/svg/free.svg#cil-building') }}"></use>
                 </svg> Urusan</a></li>

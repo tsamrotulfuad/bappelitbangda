@@ -110,4 +110,16 @@ class OpdController extends Controller
         // redirect opd index
         return redirect()->route('opds.index')->with(['success' => 'Data Berhasil Dihapus']);
     }
+
+    public function data_perangkatdaerah(Request $request) {
+        $term = trim($request->q);
+    
+        if (empty($term)) {
+            $perangkat_daerah = Opd::all();
+            return response()->json(['data' => $perangkat_daerah]);
+        } else {
+            $perangkat_daerah = Opd::where('nama', 'like', '%'. $term .'%')->get();
+            return response()->json(['data' => $perangkat_daerah]);
+        }
+    }
 }

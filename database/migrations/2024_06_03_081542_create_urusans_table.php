@@ -11,11 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sasaran_indikators', function (Blueprint $table) {
+        Schema::create('urusans', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->unsignedBigInteger('sasaran_id');
-            $table->foreign('sasaran_id')->references('id')->on('sasarans');
             $table->timestamps();
         });
     }
@@ -25,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sasaran_indikators');
+        Schema::dropIfExists('urusans');
     }
 };

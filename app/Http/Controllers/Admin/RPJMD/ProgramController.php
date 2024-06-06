@@ -111,11 +111,4 @@ class ProgramController extends Controller
         // redirect opd index
         return redirect()->route('program.index')->with(['success' => 'Data Berhasil Dihapus']);
     }
-
-    public function indikator(string $id)
-    {
-        $program = Program::findOrFail($id);
-        $indikator = ProgramIndikator::with('program')->where('sasaran_indikator_id', $program->id)->get();
-        return view('admin.sasaran.indikator', compact('sasaran', 'indikator'));
-    }
 }

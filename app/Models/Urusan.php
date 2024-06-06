@@ -6,22 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class TujuanIndikator extends Model
+class Urusan extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'nama',
-        'tujuan_id'
     ];
 
-    protected $casts = [
-        'urusan' => 'array',
-        'perangkat_daerah' => 'array'
-    ];
-
-    public function tujuan(): BelongsTo
+    public function tujuan_indikator(): BelongsTo
     {
-        return $this->belongsTo(Tujuan::class);
+        return $this->belongsTo(TujuanIndikator::class);
     }
 }

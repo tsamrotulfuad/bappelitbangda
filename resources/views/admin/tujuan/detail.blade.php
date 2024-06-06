@@ -16,7 +16,7 @@
                         </div>
                         <div class="col-md-6">
                             <label for="misi" class="form-label">Misi</label>
-                            <input type="text" class="form-control" id="misi" value="{{ $tujuan->misi->nama }}" readonly>
+                            <input type="text" class="form-control" id="misi" value="{{ $tujuan->misi->nama }} - {{ $tujuan->misi->deskripsi }}" readonly>
                         </div>
                     </div>
                     <a href="{{ route('tujuan.index') }}" class="btn btn-secondary mt-3">Kembali</a>

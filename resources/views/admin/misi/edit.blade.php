@@ -22,7 +22,7 @@
                                 <select class="form-control" id="visi_id" name="visi_id">
                                     <option selected disabled>Pilih Visi</option>
                                     @foreach ($visi as $item)
-                                        <option value="{{ $item->id }}" {{ ($item->id == $misi->visi_id) ? 'selected' : '' }}>{{ $item->nama }}</option>
+                                        <option value="{{ $item->id }}" {{ ($item->id == $misi->visi_id) ? 'selected' : '' }}>{{ $item->nama }} - {{ $item->deskripsi }}</option>
                                     @endforeach
                                  </select>
                             </div>

@@ -70,7 +70,8 @@ class MisiController extends Controller
     public function show(string $id)
     {
         $misi = Misi::findOrFail($id);
-        return view('admin.misi.detail', compact('misi'));
+        $visi = Visi::with('misi')->get();
+        return view('admin.misi.detail', compact('misi', 'visi'));
     }
 
     /**

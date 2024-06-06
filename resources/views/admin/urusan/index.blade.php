@@ -1,27 +1,24 @@
 @extends('admin.app')
-@section('breadcrumb', 'Sasaran Misi Daerah')
-@section('dropmenu', 'show')
+@section('breadcrumb', 'Urusan')
 @section('content')
     <div class="row mb-3">
         <div class="d-flex">
             <div class="flex-grow-1">
-                <a href="{{ route('sasaran.create') }}" class="btn btn-primary"><i class="bi bi-file-earmark-plus"></i> Tambah</a>
+                <a href="{{ route('urusan.create') }}" class="btn btn-primary"><i class="bi bi-file-earmark-plus"></i> Tambah</a>
             </div>
-            {{-- <div class="flex">
+            <div class="flex">
                 <a href="" class="btn btn-success text-white"><i class="bi bi-file-earmark-arrow-down"></i> Import</a>
-                <a href="" class="btn btn-secondary text-white"><i class="bi bi-file-earmark-arrow-up"></i>
-                    Export</a>
-            </div> --}}
+                <a href="" class="btn btn-secondary text-white"><i class="bi bi-file-earmark-arrow-up"></i> Export</a>
+            </div>            
         </div>
     </div>
     <div class="card mb-3">
         <div class="card-body">
-            <table id="sasaran" class="table table-striped" style="width:100%">
+            <table id="urusan" class="table table-striped" style="width:100%">
                 <thead>
                     <tr>
                         <th>No.</th>
-                        <th>Nama</th>
-                        <th>Misi</th>
+                        <th width="80%">Nama</th>
                         <th>Aksi</th>
                     </tr>
                 <tbody>
@@ -39,12 +36,11 @@
             }
         });
 
-        var table = $('#sasaran').DataTable({
-            className: 'details-control',
+        var table = $('#urusan').DataTable({
             processing: true,
             serverSide: true,
             pageLength: 10,
-            ajax: "{{ route('sasaran.index') }}",
+            ajax: "{{ route('urusan.index') }}",
             columns: [{
                     data: 'DT_RowIndex',
                     name: 'DT_RowIndex',
@@ -55,10 +51,6 @@
                 {
                     data: 'nama',
                     name: 'nama'
-                },
-                {
-                    data: 'misi',
-                    name: 'misi'
                 },
                 {
                     data: 'action',

@@ -20,10 +20,7 @@
                             <div class="col-md-6">
                                 <label for="sasaran_indikator_id" class="form-label">Misi</label>
                                 <select class="form-control" id="sasaran_indikator_id" name="sasaran_indikator_id">
-                                    <option selected disabled>Pilih Indikator</option>
-                                    @foreach ($sasaran_indikator as $item)
-                                        <option value="{{ $item->id }}" {{ ($item->id == $program->sasaran_indikator_id) ? 'selected' : '' }}>{{ $item->nama }}</option>
-                                    @endforeach
+                                    <option value="{{ $program->indikator_sasaran->id }}">{{ $program->indikator_sasaran->nama }}</option>
                                  </select>
                             </div>
                         </div>
@@ -35,3 +32,34 @@
         </div>
     </div>
 @endsection
+@push('scripts')
+    <script>
+        $(document).ready(function () {
+            $('#sasaran_indikator_id').select2({
+                theme: "bootstrap-5",
+                placeholder: "Pilih Indikator",
+                ajax: {
+                    url: "{{ route('indikator.sasaran')}}",
+                    dataType: 'json',
+                    data: function (params) {
+                        return {
+                            q: $.trim(params.term) // search term
+                        };
+                    },
+                    processResults: function({
+                        data
+                    }) {
+                        return {
+                            results: $.map(data, function(item) {
+                                return {
+                                    id: item.id,
+                                    text: item.nama
+                                }
+                            }),
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+@endpush

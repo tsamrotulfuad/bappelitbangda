@@ -16,7 +16,7 @@
                         </div>
                         <div class="col-md-6">
                             <label for="visi" class="form-label">Visi</label>
-                            <input type="text" class="form-control" id="nama" value="{{ $misi->visi->nama }}" readonly>
+                            <input type="text" class="form-control" id="nama" value="{{ $misi->visi->nama }} - {{ $misi->visi->deskripsi }}" readonly> 
                         </div>
                         <div class="col-md-6">
                             <label for="deskripsi" class="form-label">Deskripsi</label>

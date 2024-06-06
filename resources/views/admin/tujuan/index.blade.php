@@ -6,12 +6,13 @@
         <div class="d-flex">
             <div class="flex-grow-1">
                 <a href="{{ route('tujuan.create') }}" class="btn btn-primary"><i class="bi bi-file-earmark-plus"></i> Tambah</a>
+                <a href="{{ route('tujuan.create') }}" class="btn btn-warning text-white"><i class="bi bi-file-earmark-plus"></i> Tambah IKU/IKD</a>
             </div>
-            {{-- <div class="flex">
+            <div class="flex">
                 <a href="" class="btn btn-success text-white"><i class="bi bi-file-earmark-arrow-down"></i> Import</a>
                 <a href="" class="btn btn-secondary text-white"><i class="bi bi-file-earmark-arrow-up"></i>
                     Export</a>
-            </div> --}}
+            </div>
         </div>
     </div>
     <div class="card mb-3">
