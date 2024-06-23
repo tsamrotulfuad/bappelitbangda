@@ -24,7 +24,7 @@
     <div class="sidebar sidebar-dark sidebar-fixed border-end" id="sidebar">
         <div class="sidebar-header border-bottom">
             <div class="sidebar-header">
-                <div class="sidebar-brand"><b>BAPPELITBANGDA</b></div>
+                <div class="sidebar-brand"><b>E-APIK</b></div>
               </div>            
         </div>
         <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
@@ -87,15 +87,16 @@
             <li class="nav-title">Data AKIP</li>
             <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
                     <svg class="nav-icon">
-                        <use xlink:href="{{ asset('coreui/vendors/@coreui/icons/svg/free.svg#cil-spreadsheet') }}">
+                        <use xlink:href="{{ asset('coreui/vendors/@coreui/icons/svg/free.svg#cil-sitemap') }}">
                         </use>
                     </svg> Pohon Kinerja</a>
                 <ul class="nav-group-items compact">
-                    <li class="nav-item"><a class="nav-link" href="notifications/alerts.html"><span
-                                class="nav-icon"><span class="nav-icon-bullet"></span></span> Kota</a></li>
-                    <li class="nav-item"><a class="nav-link" href="notifications/alerts.html"><span
-                                class="nav-icon"><span class="nav-icon-bullet"></span></span> Perangkat Daerah</a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link {{ request()->is('admin/pokin/kota*') ? 'active' : '' }}" href="{{ route('pokin.kota') }}"><span
+                        class="nav-icon"><span class="nav-icon-bullet"></span></span> Kota</a></li>
+                    <li class="nav-item"><a class="nav-link {{ request()->is('admin/pokin/opd*') ? 'active' : '' }}" href="{{ route('pokin.opd') }}"><span
+                        class="nav-icon"><span class="nav-icon-bullet"></span></span> Perangkat Daerah</a></li>
+                    <li class="nav-item"><a class="nav-link {{ request()->is('admin/pokin/upload*') ? 'active' : '' }}" href="{{ route('pokin.upload.view') }}"><span
+                        class="nav-icon"><span class="nav-icon-bullet"></span></span> Upload Dokumen</a></li>
                 </ul>
             </li>
             <li class="nav-item"><a class="nav-link" href="">
@@ -137,25 +138,6 @@
                         <use xlink:href="{{ asset('coreui/vendors/@coreui/icons/svg/free.svg#cil-menu') }}"></use>
                     </svg>
                 </button>
-                <ul class="header-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#">
-                            <svg class="icon icon-lg">
-                                <use xlink:href="{{ asset('coreui/vendors/@coreui/icons/svg/free.svg#cil-bell') }}">
-                                </use>
-                            </svg></a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">
-                            <svg class="icon icon-lg">
-                                <use
-                                    xlink:href="{{ asset('coreui/vendors/@coreui/icons/svg/free.svg#cil-list-rich') }}">
-                                </use>
-                            </svg></a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">
-                            <svg class="icon icon-lg">
-                                <use
-                                    xlink:href="{{ asset('coreui/vendors/@coreui/icons/svg/free.svg#cil-envelope-open') }}">
-                                </use>
-                            </svg></a></li>
-                </ul>
                 <ul class="header-nav">
                     <li class="nav-item py-1">
                         <div class="vr h-100 mx-2 text-body text-opacity-75"></div>

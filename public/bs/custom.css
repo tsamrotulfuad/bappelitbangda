@@ -1,0 +1,15 @@
+.menu-link .nav li a{
+    color: black !important;
+}
+
+.menu-link .nav li a:hover{
+    color: rgb(1, 109, 182) !important;
+}
+
+.nav-color {
+    background-color: darkblue;
+}
+
+.select2 {
+    width:100%!important;
+}

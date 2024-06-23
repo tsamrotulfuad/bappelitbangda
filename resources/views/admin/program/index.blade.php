@@ -21,7 +21,7 @@
                     <tr>
                         <th>No.</th>
                         <th>Nama</th>
-                        <th>Indikator Sasaran</th>
+                        <th>Tujuan Indikator</th>
                         <th>Aksi</th>
                     </tr>
                 <tbody>
@@ -57,8 +57,8 @@
                     name: 'nama'
                 },
                 {
-                    data: 'indikator_sasaran',
-                    name: 'indikator_sasaran'
+                    data: 'tujuan_indikator',
+                    name: 'tujuan_indikator'
                 },
                 {
                     data: 'action',

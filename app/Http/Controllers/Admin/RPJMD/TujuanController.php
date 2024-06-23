@@ -4,10 +4,7 @@ namespace App\Http\Controllers\Admin\RPJMD;
 
 use App\Models\Misi;
 use App\Models\Tujuan;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use App\Models\TujuanIndikator;
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\Urusan;
 use Yajra\DataTables\Facades\DataTables;
@@ -28,13 +25,17 @@ class TujuanController extends Controller
                     $nama = $row->misi->nama;
                     return $nama;
                 })
+                ->addColumn('indikator', function ($row) {
+                    $btn = '<a href="' . route('tujuan.indikator', $row->id) . '" class="btn btn-primary btn-sm m-1" id="indikator"><i class="bi bi-plus"></i> Tambah</a>';
+                    return $btn;
+                })
                 ->addColumn('action', function ($row) {
-                    $btn = '<a href="' . route('tujuan.show', $row->id) . '" class="btn btn-info btn-sm m-1"><i class="bi bi-eye"></i></i></a>';
+                    $btn = '<a href="' . route('tujuan.show', $row->id) . '" class="btn btn-info btn-sm m-1"><i class="bi bi-eye"></i></a>';
                     $btn = $btn . '<a href="' . route('tujuan.edit', $row->id) . '" class="btn btn-warning btn-sm m-1"><i class="bi bi-pencil-square"></i></a>';
                     $btn = $btn . '<form action="' . route('tujuan.destroy', $row->id) . '" method="POST" class="d-inline-flex">' . csrf_field() . '' . method_field("DELETE") . '<button type="submit" class="btn btn-danger btn-sm m-1" onclick="return confirm(\'Yakin Akan Menghapus Data Ini?\')"><i class="bi bi-trash"></i></button>';
                     return $btn;
                 })
-                ->rawColumns(['action'])
+                ->rawColumns(['action', 'indikator'])
                 ->make(true);
         }
         return view('admin.tujuan.index');
@@ -63,7 +64,7 @@ class TujuanController extends Controller
         Tujuan::create($tujuan);
 
         // redirect opd index
-        return redirect()->route('tujuan.index')->with(['success' => 'Data Berhasil Disimpan']);
+        return redirect()->route('tujuan.index');
     }
 
     /**
@@ -113,5 +114,14 @@ class TujuanController extends Controller
 
         // redirect opd index
         return redirect()->route('tujuan.index')->with(['success' => 'Data Berhasil Dihapus']);
+    }
+
+    public function tujuan_data(Request $request) 
+    {
+        $data = Tujuan::all();
+
+        return response()->json([
+            'results' => $data
+        ]);
     }
 }

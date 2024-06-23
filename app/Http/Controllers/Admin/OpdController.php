@@ -57,7 +57,7 @@ class OpdController extends Controller
         ]);
 
         // redirect opd index
-        return redirect()->route('opds.index')->with(['success' => 'Data Berhasil Disimpan']);
+        return redirect()->route('opds.index');
     }
 
     /**
@@ -111,7 +111,7 @@ class OpdController extends Controller
         return redirect()->route('opds.index')->with(['success' => 'Data Berhasil Dihapus']);
     }
 
-    public function data_perangkatdaerah(Request $request) {
+    public function perangkatdaerah(Request $request) {
         $term = trim($request->q);
     
         if (empty($term)) {

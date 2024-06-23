@@ -6,9 +6,10 @@ use App\Http\Controllers\Admin\RPJMD\MisiController;
 use App\Http\Controllers\Admin\RPJMD\ProgramController;
 use App\Http\Controllers\Admin\RPJMD\VisiController;
 use App\Http\Controllers\Admin\RPJMD\TujuanController;
-use App\Http\Controllers\Admin\RPJMD\SasaranController;
 use App\Http\Controllers\Admin\UrusanController;
 use App\Http\Controllers\Admin\OpdController;
+use App\Http\Controllers\Admin\PokinController;
+use App\Http\Controllers\Admin\RPJMD\TujuanIndikatorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,17 +26,29 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/pokin/struktur', [PokinController::class, 'index'])->name('pokin.struktur');
+Route::get('/pokin/struktur/tema1', [PokinController::class, 'pokin_tema1'])->name('pokin.tema1');
+Route::get('/pokin/struktur/tema2', [PokinController::class, 'pokin_tema2'])->name('pokin.tema2');
+Route::get('/pokin/struktur/tema3', [PokinController::class, 'pokin_tema3'])->name('pokin.tema3');
+Route::get('/pokin/struktur/tema4', [PokinController::class, 'pokin_tema4'])->name('pokin.tema4');
+Route::get('/pokin/dokumen', [PokinController::class, 'pokin_dokumen'])->name('pokin.dokumen');
+Route::get('/pokin/dokumen/tampil', [PokinController::class, 'pokin_dokumen_tampil'])->name('pokin.dokumen.tampil');
+Route::get('/pokin/dokumen/{id}/show', [PokinController::class, 'pokin_dokumen_show'])->name('pokin.dokumen.show');
+
 Route::prefix('admin')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
-    // Tujuan
-    Route::get('/tujuan/indikator/{id}', [TujuanController::class, 'indikator'])->name('tujuan.indikator');
-    Route::post('/tujuan/indikator', [TujuanController::class, 'indikator_store'])->name('tujuan.indikator.store');
-    Route::get('/tujuan/indikator/edit/{id}', [TujuanController::class, 'indikator_edit'])->name('tujuan.indikator.edit');
-    Route::put('/tujuan/indikator/{id}', [TujuanController::class, 'indikator_update'])->name('tujuan.indikator.update');
-    Route::delete('/tujuan/indikator/{id}', [TujuanController::class, 'indikator_delete'])->name('tujuan.indikator.delete');
 
-    //Program
-    Route::get('/program/indikator/{id}', [ProgramController::class, 'indikator'])->name('program.indikator');
+    //Tujuan Indikator
+    Route::get('/tujuan/indikator/{id}', [TujuanIndikatorController::class, 'index'])->name('tujuan.indikator');
+    Route::post('/tujuan/indikator/{id}', [TujuanIndikatorController::class, 'store'])->name('tujuan.indikator.store');
+
+    //Pohon Kinerja
+    Route::get('/pokin/kota', [PokinController::class, 'pokin_kota'])->name('pokin.kota');
+    Route::post('/pokin/kota', [PokinController::class, 'pokin_kota_store'])->name('pokin.kota.store');
+    Route::get('/pokin/opd', [PokinController::class, 'pokin_opd'])->name('pokin.opd');
+    Route::post('/pokin/opd', [PokinController::class, 'pokin_opd'])->name('pokin.opd.store');
+    Route::get('/pokin/upload', [PokinController::class, 'upload_view'])->name('pokin.upload.view');
+    Route::post('/pokin/dokumen/store', [PokinController::class, 'pokin_dokumen_store'])->name('pokin.dokumen.store');
 
     Route::resource('program', ProgramController::class);
     Route::resource('opds', OpdController::class);

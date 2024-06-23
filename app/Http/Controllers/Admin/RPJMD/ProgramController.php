@@ -17,17 +17,16 @@ class ProgramController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $program = Program::with('indikator_sasaran')->limit(10);
+            $program = Program::with('tujuan_indikator')->limit(10);
 
             return DataTables::of($program)
                 ->addIndexColumn()
-                ->editColumn('indikator_sasaran', function($row) {
-                    $sasaran_indikator = $row->indikator_sasaran->nama;
-                    return  $sasaran_indikator;
+                ->editColumn('tujuan_indikator', function($row) {
+                    $tujuan_indikator = $row->tujuan_indikator->nama;
+                    return  $tujuan_indikator;
                 })
                 ->addColumn('action', function($row) {
-                    $btn = '<a href="'.route('program.indikator', $row->id).'" class="btn btn-secondary btn-sm m-1"><i class="bi bi-plus"></i></a>';
-                    $btn = $btn.'<a href="'.route('program.show', $row->id).'" class="btn btn-info btn-sm m-1"><i class="bi bi-eye"></i></i></a>';
+                    $btn = '<a href="'.route('program.show', $row->id).'" class="btn btn-info btn-sm m-1"><i class="bi bi-eye"></i></i></a>';
                     $btn = $btn.'<a href="'.route('program.edit', $row->id).'" class="btn btn-warning btn-sm m-1"><i class="bi bi-pencil-square"></i></a>';
                     $btn = $btn.'<form action="'.route('program.destroy', $row->id).'" method="POST" class="d-inline-flex">'.csrf_field().''.method_field("DELETE").'<button type="submit" class="btn btn-danger btn-sm m-1" onclick="return confirm(\'Yakin Akan Menghapus Data Ini?\')"><i class="bi bi-trash"></i></button>';
                     return $btn; 
@@ -53,8 +52,26 @@ class ProgramController extends Controller
     {
         // validate form
         $program = $this->validate($request, [
-            'nama'   => 'required',
-            'sasaran_indikator_id' => 'required'
+            'nama'  => 'required',
+            'indikator_utama' => 'required',
+            'indikator_program' => 'required',
+            'satuan'  => 'required',
+            'perangkat_daerah'  => 'required',
+            'kinerja_awal' => 'required',
+            'kinerja_akhir' => 'required',
+            'kinerja_akhir_satuan' => 'required',
+            'target_n' => 'required',
+            'target_n_1' => 'required',
+            'target_n_2' => 'required',
+            'target_n_3' => 'required',
+            'target_n_4' => 'required',
+            'target_n_5' => 'required',
+            'satuan_n' => 'required',
+            'satuan_n_1'=> 'required',
+            'satuan_n_2'=> 'required',
+            'satuan_n_3'=> 'required',
+            'satuan_n_4' => 'required',
+            'satuan_n_5' => 'required',
         ]);
         // create opd data
         Program::create($program);
@@ -78,7 +95,7 @@ class ProgramController extends Controller
     public function edit(string $id)
     {
         $program = Program::findOrFail($id);
-        $sasaran_indikator = SasaranIndikator::with('program')->get();
+        // $sasaran_indikator = SasaranIndikator::with('program')->get();
         return view('admin.program.edit', compact('program', 'sasaran_indikator'));
     }
 
@@ -112,3 +129,4 @@ class ProgramController extends Controller
         return redirect()->route('program.index')->with(['success' => 'Data Berhasil Dihapus']);
     }
 }
+
