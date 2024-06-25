@@ -59,5 +59,12 @@ class CascadingController extends Controller
         toastr()->success('Data berhasil disimpan');
 
         return redirect()->route('cascading.upload.view');
-    }  
+    }
+
+    public function data_cascading_upload()
+    {
+        $data = CascadingUpload::all();
+
+        return response()->json($data);
+    }
 }
