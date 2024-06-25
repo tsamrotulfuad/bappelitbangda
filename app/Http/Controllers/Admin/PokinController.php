@@ -174,6 +174,9 @@ class PokinController extends Controller
     {
         $data = PokinUpload::all();
 
-        return response()->json($data);
+        return response()->json([
+            'path' => storage_path('/app/public/pokin_upload/'),
+            'data' => $data,
+        ]);
     }
 }
