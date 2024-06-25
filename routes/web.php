@@ -36,10 +36,14 @@ Route::get('/pokin/struktur/tema4', [PokinController::class, 'pokin_tema4'])->na
 Route::get('/pokin/dokumen', [PokinController::class, 'pokin_dokumen'])->name('pokin.dokumen');
 Route::get('/pokin/dokumen/tampil', [PokinController::class, 'pokin_dokumen_tampil'])->name('pokin.dokumen.tampil');
 Route::get('/pokin/dokumen/{id}/show', [PokinController::class, 'pokin_dokumen_show'])->name('pokin.dokumen.show'); // pokin download
+
 //Cascading
 Route::get('/cascading/dokumen', [CascadingController::class, 'cascading_dokumen'])->name('cascading.dokumen');
 Route::get('/cascading/dokumen/tampil', [CascadingController::class, 'cascading_dokumen_tampil'])->name('cascading.dokumen.tampil');
 Route::get('/cascading/dokumen/{id}/show', [CascadingController::class, 'cascading_dokumen_show'])->name('cascading.dokumen.show'); // cascading download
+
+//Manual Indikator
+Route::get('/manual_indikator/dokumen', [ManualIndikatorController::class, 'manual_indikator_dokumen'])->name('manual.indikator.dokumen');
 
 Route::prefix('admin')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');

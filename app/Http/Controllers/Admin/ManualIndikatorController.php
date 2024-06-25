@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Storage;
 
 class ManualIndikatorController extends Controller
 {
+    public function manual_indikator_dokumen()
+    {
+        return view();
+    }
     //Admin
     public function upload_view() {
         return view('admin.manual_indikator.upload');

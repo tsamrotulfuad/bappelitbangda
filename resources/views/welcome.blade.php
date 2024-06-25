@@ -38,7 +38,7 @@
                         </ul>
                     </li>
                     <li class="nav-item"><a href="{{ route('cascading.dokumen')}}" class="nav-link text-white px-3">Cascading</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link text-white px-3">Manual Indikator</a></li>
+                    <li class="nav-item"><a href="{{ route('manual.indikator.dokumen')}}" class="nav-link text-white px-3">Manual Indikator</a></li>
                 </ul>
             </div>
         </nav>
