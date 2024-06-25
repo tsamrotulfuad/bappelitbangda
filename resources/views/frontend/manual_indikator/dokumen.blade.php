@@ -34,7 +34,7 @@
         processing: true,
         serverSide: true,
         pageLength: 10,
-        ajax: "{{ route('cascading.dokumen.tampil')}}",
+        ajax: "{{ route('manual.indikator.tampil')}}",
         columns: [{
                 data: 'DT_RowIndex',
                 name: 'DT_RowIndex',

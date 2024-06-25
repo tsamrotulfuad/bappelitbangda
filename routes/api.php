@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CascadingController;
+use App\Http\Controllers\Admin\ManualIndikatorController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\OpdController;
@@ -49,3 +50,6 @@ Route::get('/pokin/data/upload', [PokinController::class, 'data_pokin_upload']);
 
 // Cascading
 Route::get('/cascading/data/upload', [CascadingController::class, 'data_cascading_upload']);
+
+// Manual Indikator
+Route::get('/manual_indikator/data/upload', [ManualIndikatorController::class, 'data_manual_indikator_upload']);

@@ -44,6 +44,8 @@ Route::get('/cascading/dokumen/{id}/show', [CascadingController::class, 'cascadi
 
 //Manual Indikator
 Route::get('/manual_indikator/dokumen', [ManualIndikatorController::class, 'manual_indikator_dokumen'])->name('manual.indikator.dokumen');
+Route::get('/manual_indikator/tampil', [ManualIndikatorController::class, 'manual_indikator_tampil'])->name('manual.indikator.tampil');
+Route::get('/manual_indikator/dokumen/{id}/show', [ManualIndikatorController::class, 'manual_indikator_show'])->name('manual.indikator.show'); // manual indikator download
 
 Route::prefix('admin')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
