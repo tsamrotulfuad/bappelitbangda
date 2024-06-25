@@ -64,7 +64,11 @@ class CascadingController extends Controller
     public function data_cascading_upload()
     {
         $data = CascadingUpload::all();
-
-        return response()->json($data);
+        $path = 'cascading_upload/';
+        
+        return response()->json([
+            'path' => Storage::disk('public')->url($path),
+            'data' => $data,
+        ]);
     }
 }

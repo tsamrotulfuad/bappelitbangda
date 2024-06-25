@@ -65,7 +65,11 @@ class ManualIndikatorController extends Controller
     public function data_manual_indikator_upload()
     {
         $data = ManualIndikator::all();
-
-        return response()->json($data);
+        $path = 'manual_indikator_upload/';
+        
+        return response()->json([
+            'path' => Storage::disk('public')->url($path),
+            'data' => $data,
+        ]);
     }
 }
