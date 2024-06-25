@@ -26,10 +26,9 @@
             </div>
         </header>
         <nav class="navbar navbar-expand-sm border-bottom nav-color px-5">
-            <div class="collapse navbar-collapse justify-content-md-end px-2" id="navbarsExample08">
+            <div class="collapse navbar-collapse justify-content-md-end" id="navbarsExample08">
                 <ul class="navbar-nav">
                     <li class="nav-item"><a href="#" class="nav-link text-white px-3">RPJMD</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link text-white px-3">Renstra</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-white" href="#" data-bs-toggle="dropdown" aria-expanded="false">Pohon Kinerja</a>
                         <ul class="dropdown-menu">
@@ -38,6 +37,8 @@
                             <li></li>
                         </ul>
                     </li>
+                    <li class="nav-item"><a href="{{ route('cascading.dokumen')}}" class="nav-link text-white px-3">Cascading</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link text-white px-3">Manual Indikator</a></li>
                 </ul>
             </div>
         </nav>

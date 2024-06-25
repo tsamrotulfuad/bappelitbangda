@@ -162,6 +162,7 @@ class PokinController extends Controller
 
         $data['nama'] = $request->nama;
         $data['file_pokin'] = $filename;
+        $data['tahun'] = $request->tahun;
 
         PokinUpload::create($data);
         toastr()->success('Data berhasil disimpan');

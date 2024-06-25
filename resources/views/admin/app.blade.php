@@ -99,14 +99,14 @@
                         class="nav-icon"><span class="nav-icon-bullet"></span></span> Upload Dokumen</a></li>
                 </ul>
             </li>
-            <li class="nav-item"><a class="nav-link" href="">
+            <li class="nav-item"><a class="nav-link {{ request()->is('admin/cascading/upload*') ? 'active' : '' }}" href="{{ route('cascading.upload.view') }}">
                     <svg class="nav-icon">
-                        <use xlink:href="{{ asset('coreui/vendors/@coreui/icons/svg/free.svg#cil-building') }}"></use>
+                        <use xlink:href="{{ asset('coreui/vendors/@coreui/icons/svg/free.svg#cil-chart-line') }}"></use>
                     </svg> Cascading</a></li>
-            <li class="nav-item"><a class="nav-link" href="">
+            <li class="nav-item"><a class="nav-link {{ request()->is('admin/manual_indikator/upload*') ? 'active' : '' }}" href="{{ route('manualindikator.upload.view')}}">
                     <svg class="nav-icon">
                         <use xlink:href="{{ asset('coreui/vendors/@coreui/icons/svg/free.svg#cil-building') }}"></use>
-                    </svg> Manual indikator</a></li>
+                    </svg> Manual Indikator</a></li>
             <li class="nav-item"><a class="nav-link" href="">
                     <svg class="nav-icon">
                         <use xlink:href="{{ asset('coreui/vendors/@coreui/icons/svg/free.svg#cil-building') }}"></use>
