@@ -35,3 +35,4 @@ Route::get('/pokin/kota/tema1', [PokinController::class, 'pokin_kota_tema1'])->n
 Route::get('/pokin/kota/tema2', [PokinController::class, 'pokin_kota_tema2'])->name('pokin.kota.tema2');
 Route::get('/pokin/kota/tema3', [PokinController::class, 'pokin_kota_tema3'])->name('pokin.kota.tema3');
 Route::get('/pokin/kota/tema4', [PokinController::class, 'pokin_kota_tema4'])->name('pokin.kota.tema4');
+Route::get('/pokin/data/upload', [PokinController::class, 'data_pokin_upload']);

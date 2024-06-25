@@ -168,5 +168,12 @@ class PokinController extends Controller
         toastr()->success('Data berhasil disimpan');
 
         return redirect()->route('pokin.upload.view');
-    }  
+    }
+
+    public function data_pokin_upload()
+    {
+        $data = PokinUpload::all();
+
+        return response()->json($data);
+    }
 }
