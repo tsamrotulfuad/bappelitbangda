@@ -35,6 +35,16 @@ class RouteServiceProvider extends ServiceProvider
 
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
+            
+            Route::group([
+                'middleware' => ['api', 'cors'],
+                'namespace' => $this->namespace,
+                'prefix' => 'api',
+            ], function ($router) {
+                Route::get('/pokin/data/upload', [PokinController::class, 'data_pokin_upload']);
+                Route::get('/cascading/data/upload', [CascadingController::class, 'data_cascading_upload']);
+                Route::get('/manual_indikator/data/upload', [ManualIndikatorController::class, 'data_manual_indikator_upload']);                   
+            });
         });
     }
 }
