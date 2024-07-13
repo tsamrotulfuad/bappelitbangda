@@ -24,7 +24,8 @@ class ManualIndikatorController extends Controller
             return DataTables::of($manual_indikator)
                 ->addIndexColumn()
                 ->addColumn('action', function($row) {
-                    $btn = '<a href="'.route('manual.indikator.show', $row->id).'" class="btn btn-primary btn-sm m-1" target="_blank"><i class="bi bi-download"></i></i></a>';
+                    $btn = '<a href="'.route('manual.indikator.preview', $row->id).'" class="btn btn-warning btn-sm m-1" target="_blank"><i class="bi bi-eye"></i></i></a>';
+                    $btn = $btn.'<a href="'.route('manual.indikator.show', $row->id).'" class="btn btn-primary btn-sm m-1" target="_blank"><i class="bi bi-download"></i></i></a>';
                     return $btn; 
                 })
                 ->rawColumns(['action'])
@@ -37,6 +38,12 @@ class ManualIndikatorController extends Controller
     {
         $manual_indikator = ManualIndikator::findOrFail($id);
         return response()->download(storage_path('/app/public/manual_indikator_upload/'.$manual_indikator->file));
+    }
+
+    public function manual_indikator_preview(string $id) 
+    {
+        $manual_indikator = ManualIndikator::findOrFail($id);
+        return response()->file(storage_path('/app/public/manual_indikator_upload/'.$manual_indikator->file));
     }
 
     //Admin

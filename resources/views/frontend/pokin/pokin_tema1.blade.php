@@ -68,23 +68,28 @@
 
 <script>
     fetch(
-      'http://bappelitbangda.test/api/pokin/kota/tema1'
+      'http://103.165.154.47/api/pokin/kota/tema1'
     )
       .then((d) => d.json())
       .then((data) => {
         chart = new d3.OrgChart()
-          .nodeWidth((node) => 250)
-          .nodeHeight((node) => 100)
+          .nodeWidth((node) => 400)
+          .nodeHeight((node) => 125)
           .nodeContent((node) => {
-              return `<div style="background-color:white;
+              return `<div style="background-color:${node.data.color};
               width:${node.width}px;
               height:${node.height}px;
-              text-align:center;
-              border-radius:10px;
-              border: 1px solid; color:black;"> 
+              text-align: center;
+              color: white;
+             "> 
               <br>
-                  ${node.data.name} : <br><br>
-                  ${node.data.indikator} <br>
+                ${node.data.name} : 
+                <br><br>
+                <div style="background-color:${node.data.color_indikator};
+                width:400px;
+                height:50px;
+                color: black;"
+                </div><br>${node.data.indikator}
               </div>`
           })
           .container('.chart-container')

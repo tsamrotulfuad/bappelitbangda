@@ -18,7 +18,7 @@
             </a>
             <div class="menu-link">
                 <ul class="nav nav-pills align-items-center py-2 px-5 fs-5 fw-light">
-                    <li class="nav-item"><a href="#" class="nav-link">Beranda</a></li>
+                    <li class="nav-item"><a href="{{ route('home') }}" class="nav-link">Beranda</a></li>
                     <li class="nav-item"><a href="#" class="nav-link">Tentang</a></li>
                     <li class="nav-item"><a href="#" class="nav-link">Layanan</a></li>
                     <li class="nav-item"><a href="#" class="nav-link">Kontak Kami</a></li>
@@ -28,12 +28,19 @@
         <nav class="navbar navbar-expand-sm border-bottom nav-color px-5">
             <div class="collapse navbar-collapse justify-content-md-end" id="navbarsExample08">
                 <ul class="navbar-nav">
-                    <li class="nav-item"><a href="#" class="nav-link text-white px-3">RPJMD</a></li>
+                    <li class="nav-item"><a href="{{ route('rpjmd.index') }}" class="nav-link text-white px-3">RPJMD</a></li>
+                    <li class="nav-item"><a href="{{ route('rkpd.index') }}" class="nav-link text-white px-3">RKPD</a></li>
+                    <li class="nav-item"><a href="{{ route('lkpj.index') }}" class="nav-link text-white px-3">LKPJ</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-white" href="#" data-bs-toggle="dropdown" aria-expanded="false">Pohon Kinerja</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{ route('pokin.struktur') }}">Struktur</a></li>
-                            <li><a class="dropdown-item" href="{{ route('pokin.dokumen') }}">Dokumen</a></li>
+                            <li><a class="dropdown-item" href="{{ route('pokin.struktur') }}">Pohon Kinerja Kota Pasuruan</a></li>
+                            <li><a class="dropdown-item" href="{{ route('pokin.struktur') }}">Pohon Kinerja Tematik Kemiskinan</a></li>
+                            <li><a class="dropdown-item" href="{{ route('pokin.pd.struktur') }}">Pohon Kinerja Perangkat Daerah</a></li>
+                            <li><a class="dropdown-item" href="{{ route('pokin.kota.dokumen') }}">Dokumen Pohon Kinerja Kota Pasuruan</a></li>
+                            <li><a class="dropdown-item" href="{{ route('pokin.tematik.dokumen') }}">Dokumen Pohon Kinerja Tematik Kemiskinan</a></li>
+                            <li><a class="dropdown-item" href="{{ route('pokin.rb.dokumen') }}">Dokumen Pohon Kinerja RB Tematik</a></li>
+                            <li><a class="dropdown-item" href="{{ route('pokin.perangkatdaerah.dokumen') }}">Dokumen Pohon Kinerja Perangkat Daerah</a></li>
                             <li></li>
                         </ul>
                     </li>

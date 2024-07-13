@@ -48,8 +48,23 @@ Route::get('/pokin/kota/tema3', [PokinController::class, 'pokin_kota_tema3'])->n
 Route::get('/pokin/kota/tema4', [PokinController::class, 'pokin_kota_tema4'])->name('pokin.kota.tema4');
 Route::get('/pokin/data/upload', [PokinController::class, 'data_pokin_upload']);
 
+// Pokin Kota
+Route::get('/pokin/kota/data', [PokinController::class, 'data_pokin_kota']);
+
+// Pokin Perangkat Daerah
+Route::get('/pokin/pd/data', [PokinController::class, 'data_pokin_pd']);
+
 // Cascading
 Route::get('/cascading/data/upload', [CascadingController::class, 'data_cascading_upload']);
 
 // Manual Indikator
 Route::get('/manual_indikator/data/upload', [ManualIndikatorController::class, 'data_manual_indikator_upload']);
+
+// RPJMD
+Route::get('/rpjmd/data/upload', [App\Http\Controllers\Admin\RPJMD\UploadController::class, 'data_rpjmd_upload']);
+
+// RKPD
+Route::get('/rkpd/data/upload', [App\Http\Controllers\Admin\RKPD\UploadController::class, 'data_rkpd_upload']);
+
+// LKPJ
+Route::get('/lkpj/data/upload', [App\Http\Controllers\Admin\LKPJ\UploadController::class, 'data_lkpj_upload']);

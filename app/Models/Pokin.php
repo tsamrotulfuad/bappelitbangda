@@ -14,6 +14,6 @@ class Pokin extends Model
         'indikator',
         'parentId',
         'user_id',
-        'tema'
+        'tema',
     ];
 }

@@ -18,6 +18,11 @@ class PokinController extends Controller
         return view('frontend.pokin.struktur');
     }
 
+    public function pd_index()
+    {
+        return view('frontend.pokin.struktur_pd');
+    }
+
     public function pokin_tema1()
     {
         return view('frontend.pokin.pokin_tema1');
@@ -63,9 +68,38 @@ class PokinController extends Controller
         return response()->json($data);
     }
 
+    public function data_pokin_kota()
+    {
+        $pokin_kota = DB::table('pokin_uploads')->where('user_id', '=', 1)->get();
+        $path = 'pokin_upload/';
+
+        return response()->json([
+            'path' => Storage::disk('public')->url($path),
+            'data' => $pokin_kota
+        ]);
+    }
+
+    public function data_pokin_pd()
+    {
+        $data = DB::table('pokins')->where('user_id', '=', 2)->get();
+        return response()->json($data);
+    }
+
     // halaman depan pokin dokumen
-    public function pokin_dokumen() {
-        return view('frontend.pokin.dokumen');
+    public function pokin_kota_dokumen() {
+        return view('frontend.pokin.dokumen_kota');
+    }
+
+    public function pokin_tematik_dokumen() {
+        return view('frontend.pokin.tematik');
+    }
+
+    public function pokin_rb_dokumen() {
+        return view('frontend.pokin.tematik_rb');
+    }
+
+    public function pokin_pd_dokumen() {
+        return view('frontend.pokin.dokumen_pd');
     }
 
     // download pokin per ID perangkat daerah
@@ -75,15 +109,78 @@ class PokinController extends Controller
         return response()->download(storage_path('/app/public/pokin_upload/'.$pokin->file_pokin));
     }
 
-    public function pokin_dokumen_tampil(Request $request)
+    public function pokin_dokumen_preview(string $id) 
+    {
+        $pokin = PokinUpload::findOrFail($id);
+        return response()->file(storage_path('/app/public/pokin_upload/'.$pokin->file_pokin));
+    }
+
+    //
+    public function pokin_kota_tampil(Request $request)
     {
         if ($request->ajax()) {
-            $pokin = DB::table('pokin_uploads')->get();
+            $pokin = DB::table('pokin_uploads')->where('user_id', '=', 1)->get();
 
             return DataTables::of($pokin)
                 ->addIndexColumn()
                 ->addColumn('action', function($row) {
-                    $btn = '<a href="'.route('pokin.dokumen.show', $row->id).'" class="btn btn-primary btn-sm m-1" target="_blank"><i class="bi bi-download"></i></i></a>';
+                    $btn = '<a href="'.route('pokin.dokumen.preview', $row->id).'" class="btn btn-warning btn-sm m-1" target="_blank"><i class="bi bi-eye"></i></i></a>';
+                    $btn = $btn.'<a href="'.route('pokin.dokumen.show', $row->id).'" class="btn btn-primary btn-sm m-1" target="_blank"><i class="bi bi-download"></i></i></a>';
+                    return $btn; 
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+        return view('admin.pokin.kota');
+    }
+
+    public function pokin_tematik_tampil(Request $request)
+    {
+        if ($request->ajax()) {
+            $pokin = DB::table('pokin_uploads')->where('tema', '=', 'tematik')->get();
+
+            return DataTables::of($pokin)
+                ->addIndexColumn()
+                ->addColumn('action', function($row) {
+                    $btn = '<a href="'.route('pokin.dokumen.preview', $row->id).'" class="btn btn-warning btn-sm m-1" target="_blank"><i class="bi bi-eye"></i></i></a>';
+                    $btn = $btn.'<a href="'.route('pokin.dokumen.show', $row->id).'" class="btn btn-primary btn-sm m-1" target="_blank"><i class="bi bi-download"></i></i></a>';
+                    return $btn; 
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+        return view('admin.pokin.kota');
+    }
+
+    public function pokin_rb_tampil(Request $request)
+    {
+        if ($request->ajax()) {
+            $pokin = DB::table('pokin_uploads')->where('tema', '=', 'rb')->get();
+
+            return DataTables::of($pokin)
+                ->addIndexColumn()
+                ->addColumn('action', function($row) {
+                    $btn = '<a href="'.route('pokin.dokumen.preview', $row->id).'" class="btn btn-warning btn-sm m-1" target="_blank"><i class="bi bi-eye"></i></i></a>';
+                    $btn = $btn.'<a href="'.route('pokin.dokumen.show', $row->id).'" class="btn btn-primary btn-sm m-1" target="_blank"><i class="bi bi-download"></i></i></a>';
+                    return $btn; 
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+        return view('admin.pokin.kota');
+    }
+
+    public function pokin_perangkatdaerah_tampil(Request $request)
+    {
+        if ($request->ajax()) {
+            $pokin = DB::table('pokin_uploads')->whereNull('user_id')->whereNull('tema')->get();
+            //$pokin = DB::table('pokin_uploads')->whereNull('user_id')->orWhere('tema', '=', null)->get();
+
+            return DataTables::of($pokin)
+                ->addIndexColumn()
+                ->addColumn('action', function($row) {
+                    $btn = '<a href="'.route('pokin.dokumen.preview', $row->id).'" class="btn btn-warning btn-sm m-1" target="_blank"><i class="bi bi-eye"></i></i></a>';
+                    $btn = $btn.'<a href="'.route('pokin.dokumen.show', $row->id).'" class="btn btn-primary btn-sm m-1" target="_blank"><i class="bi bi-download"></i></i></a>';
                     return $btn; 
                 })
                 ->rawColumns(['action'])
@@ -97,7 +194,7 @@ class PokinController extends Controller
     public function pokin_kota(Request $request)
     {
         if ($request->ajax()) {
-            $pokin = DB::table('pokins')->get();
+            $pokin = DB::table('pokins')->where('user_id', '=', 2)->get();
 
             return DataTables::of($pokin)
                 ->addIndexColumn()
@@ -134,8 +231,8 @@ class PokinController extends Controller
             'name'      => $request->name,
             'indikator' => $request->indikator,
             'parentId'  => $request->parentId,
-            'user_id' => 1,
-            'tema' => $request->tema
+            'user_id' => 2,
+            // 'tema' => $request->tema
         ]);
 
         return redirect()->route('pokin.kota');
@@ -173,7 +270,7 @@ class PokinController extends Controller
     public function data_pokin_upload()
     {
         $data = PokinUpload::all();
-        $path         = 'pokin_upload/';
+        $path = 'pokin_upload/';
         
         return response()->json([
             'path' => Storage::disk('public')->url($path),

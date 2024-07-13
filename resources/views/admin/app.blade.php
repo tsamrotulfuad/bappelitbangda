@@ -47,6 +47,8 @@
                                     class="nav-icon-bullet"></span></span> Tujuan</a></li>
                     <li class="nav-item"><a class="nav-link {{ request()->is('admin/program*') ? 'active' : '' }}" href="{{ route('program.index')}}"><span class="nav-icon"><span
                                     class="nav-icon-bullet"></span></span> Program</a></li>
+                    <li class="nav-item"><a class="nav-link {{ request()->is('admin/rpjmd*') ? 'active' : '' }}" href="{{ route('upload.rpjmd.menu')}}"><span class="nav-icon"><span
+                                    class="nav-icon-bullet"></span></span> Upload</a></li>
                 </ul>
             </li>
             <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
@@ -63,6 +65,18 @@
                                     class="nav-icon-bullet"></span></span> Pokok Pikiran</a></li>
                     <li class="nav-item"><a class="nav-link" href=""><span class="nav-icon"><span
                                     class="nav-icon-bullet"></span></span> Renja</a></li>
+                    <li class="nav-item"><a class="nav-link {{ request()->is('admin/rkpd/*') ? 'active' : '' }}" href="{{ route('upload.rkpd.menu') }}"><span class="nav-icon"><span
+                                    class="nav-icon-bullet"></span></span> Upload</a></li>
+                </ul>
+            </li>
+            <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
+                    <svg class="nav-icon">
+                        <use xlink:href="{{ asset('coreui/vendors/@coreui/icons/svg/free.svg#cil-folder-open') }}">
+                        </use>
+                    </svg> LKPJ</a>
+                <ul class="nav-group-items compact">
+                    <li class="nav-item"><a class="nav-link {{ request()->is('admin/lkpj/*') ? 'active' : '' }}" href="{{ route('upload.lkpj.menu') }}"><span class="nav-icon"><span
+                                    class="nav-icon-bullet"></span></span> Upload</a></li>
                 </ul>
             </li>
             <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
@@ -113,6 +127,28 @@
                     </svg> Perjanjian Kinerja</a></li>
            
             <li class="nav-title">Master Data</li>
+            <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
+                    <svg class="nav-icon">
+                        <use xlink:href="{{ asset('coreui/vendors/@coreui/icons/svg/free.svg#cil-sitemap') }}">
+                        </use>
+                    </svg> Upload Dokumen</a>
+                <ul class="nav-group-items compact">
+                    <li class="nav-item"><a class="nav-link {{ request()->is('admin/pokin/kota*') ? 'active' : '' }}" href="{{ route('pokin.kota') }}"><span
+                        class="nav-icon"><span class="nav-icon-bullet"></span></span> Pokin Kota Pasuruan</a></li>
+                    <li class="nav-item"><a class="nav-link {{ request()->is('admin/pokin/opd*') ? 'active' : '' }}" href="{{ route('pokin.opd') }}"><span
+                        class="nav-icon"><span class="nav-icon-bullet"></span></span> Pokin Perangkat Daerah</a></li>
+                    <li class="nav-item"><a class="nav-link {{ request()->is('admin/pokin/upload*') ? 'active' : '' }}" href="{{ route('pokin.upload.view') }}"><span
+                        class="nav-icon"><span class="nav-icon-bullet"></span></span> Cascading</a></li>
+                    <li class="nav-item"><a class="nav-link {{ request()->is('admin/pokin/upload*') ? 'active' : '' }}" href="{{ route('pokin.upload.view') }}"><span
+                        class="nav-icon"><span class="nav-icon-bullet"></span></span> Manual Indikator</a></li>
+                    <li class="nav-item"><a class="nav-link {{ request()->is('admin/pokin/upload*') ? 'active' : '' }}" href="{{ route('pokin.upload.view') }}"><span
+                        class="nav-icon"><span class="nav-icon-bullet"></span></span> RPJMD</a></li>
+                    <li class="nav-item"><a class="nav-link {{ request()->is('admin/pokin/upload*') ? 'active' : '' }}" href="{{ route('pokin.upload.view') }}"><span
+                        class="nav-icon"><span class="nav-icon-bullet"></span></span> RKPD</a></li>
+                    <li class="nav-item"><a class="nav-link {{ request()->is('admin/pokin/upload*') ? 'active' : '' }}" href="{{ route('pokin.upload.view') }}"><span
+                        class="nav-icon"><span class="nav-icon-bullet"></span></span> LKPJ</a></li>
+                </ul>
+            </li>
             <li class="nav-item"><a class="nav-link {{ request()->is('admin/opds*') ? 'active' : '' }}"
                 href="{{ route('opds.index') }}">
                 <svg class="nav-icon">

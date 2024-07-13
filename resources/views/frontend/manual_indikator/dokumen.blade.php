@@ -14,6 +14,7 @@
             <tr>
                 <th>No.</th>
                 <th>Nama</th>
+                <th>Tahun</th>
                 <th>Aksi</th>
             </tr>
         <tbody>
@@ -45,6 +46,10 @@
             {
                 data: 'nama',
                 name: 'nama'
+            },
+            {
+                data: 'tahun',
+                name: 'tahun'
             },
             {
                 data: 'action',

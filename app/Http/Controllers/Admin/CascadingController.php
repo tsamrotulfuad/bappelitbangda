@@ -23,7 +23,8 @@ class CascadingController extends Controller
             return DataTables::of($pokin)
                 ->addIndexColumn()
                 ->addColumn('action', function($row) {
-                    $btn = '<a href="'.route('cascading.dokumen.show', $row->id).'" class="btn btn-primary btn-sm m-1" target="_blank"><i class="bi bi-download"></i></i></a>';
+                    $btn = '<a href="'.route('cascading.dokumen.preview', $row->id).'" class="btn btn-warning btn-sm m-1" target="_blank"><i class="bi bi-eye"></i></i></a>';
+                    $btn = $btn.'<a href="'.route('cascading.dokumen.show', $row->id).'" class="btn btn-primary btn-sm m-1" target="_blank"><i class="bi bi-download"></i></i></a>';
                     return $btn; 
                 })
                 ->rawColumns(['action'])
@@ -36,6 +37,12 @@ class CascadingController extends Controller
     {
         $cascading = CascadingUpload::findOrFail($id);
         return response()->download(storage_path('/app/public/cascading_upload/'.$cascading->file_cascading));
+    }
+
+    public function cascading_dokumen_preview(string $id) 
+    {
+        $cascading = CascadingUpload::findOrFail($id);
+        return response()->file(storage_path('/app/public/cascading_upload/'.$cascading->file_cascading));
     }
 
     //Admin
